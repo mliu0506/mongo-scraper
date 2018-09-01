@@ -5,7 +5,7 @@ header {
     
 }
 .text-white{
-    font-weight:900;
+    font-weight:700;
 
 }
 
@@ -15,33 +15,34 @@ header {
 
 .card-title{
     color: darkgray !important;
-    font-weight:900;
+    font-weight:600;
+    font-size:12px;
 }
 
 .card {
     background: #fff;
     border-radius: 2px;
-    height: 300px;
+    height: 330px;
     margin: 1rem;
     position: relative;
-    width: 325px;
+    width: 345px;
     box-shadow: 0 3px 6px #999, 0 3px 6px #999;
     text-align: left;
   }
-.card-header {
+.card-image-top {
     height: 100%;
     overflow: hidden;
     text-align: center;
-    background:#6CADDC;
+    background:white;
 }
 
 .card-body{
     padding-left: 1rem;
     padding-right: 1rem;
-    font-size: 15px;
+    font-size: 10px;
 }
 
 .card-footer{
-    margin-top: 25px;
+    margin-top: 0px;
     text-align: center;
 }

@@ -9,28 +9,27 @@ module.exports = function(app) {
 app.get("/scrape", function(req, res) {
   mongoose.connection.db.dropCollection('articles', function(err, result) {});
 
-  request("https://medium.com/topic/programming", function(error, response, html) {
+  request("https://www.thoughtco.com/arts-music-recreation-4132958", function(error, response, html) {
 
   
   console.log("Scrape Complete");
 
     var $ = cheerio.load(html);
 
-    $("div.streamItem").each(function(i, element_parent) {   
-      $(element_parent).find("div.u-size4of12").each(function(i, element) {
+  
+    $(".g-item").children('a').each(function(i, element) {
       var result = {};
 
-      result.link = $(element).children("div.u-sizeFullWidth").children("a")
+      result.title = $(this)
+        .find(".block-title")
+        .text();
+
+      result.link = $(this)
         .attr("href");
-        console.log(result.link);
 
-      result.image = $(element).children("div.u-sizeFullWidth").children("a")
-        .attr("style");
-        console.log(result.image);
-
-      result.title =  $(element).children("div.u-sizeFullWidth").children("a")
-        .attr("aria-label");
-        console.log(result.title);
+      result.image = $(this)
+        .find("img")
+        .attr('data-src');
 
       
       db.Article.create(result)
@@ -41,7 +40,7 @@ app.get("/scrape", function(req, res) {
         .catch(function(err) {
           return res.json(err);
         });
-      });
+     
     });
 
   });
